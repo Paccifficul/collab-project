@@ -9,5 +9,4 @@ public class CollabProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(CollabProjectApplication.class, args);
     }
-
 }
