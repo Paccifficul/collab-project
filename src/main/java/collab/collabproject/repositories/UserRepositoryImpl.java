@@ -3,6 +3,7 @@ package collab.collabproject.repositories;
 import collab.collabproject.mappers.UserMapper;
 import collab.collabproject.models.User;
 
+import java.util.List;
 import java.util.Optional;
 import collab.collabproject.repositories.interfaces.UserRepository;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Repository;
 public class UserRepositoryImpl implements UserRepository {
 
     private static final String SQL_GET_USER_BY_ID =
-            "select id, first_name, last_name, age from users where id = :id";
+            "select * from users where id = :id";
+    private static final String SQL_GET_ALL_USERS =
+            "select * from users";
 
     private final UserMapper userMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
@@ -32,5 +35,10 @@ public class UserRepositoryImpl implements UserRepository {
         params.addValue("id", id);
         return jdbcTemplate.query(SQL_GET_USER_BY_ID, params, userMapper).stream()
                 .findFirst();
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return jdbcTemplate.query(SQL_GET_ALL_USERS, userMapper);
     }
 }
