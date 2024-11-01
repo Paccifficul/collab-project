@@ -12,12 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-
-    private static final String SQL_GET_USER_BY_ID =
-            "select * from users where id = :id";
-    private static final String SQL_GET_ALL_USERS =
-            "select * from users";
-
     private final UserMapper userMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -33,12 +27,12 @@ public class UserRepositoryImpl implements UserRepository {
     public Optional<User> getUserById(int id) {
         var params = new MapSqlParameterSource();
         params.addValue("id", id);
-        return jdbcTemplate.query(SQL_GET_USER_BY_ID, params, userMapper).stream()
+        return jdbcTemplate.query(SqlQueries.SQL_GET_USER_BY_ID, params, userMapper).stream()
                 .findFirst();
     }
 
     @Override
     public List<User> getUsers() {
-        return jdbcTemplate.query(SQL_GET_ALL_USERS, userMapper);
+        return jdbcTemplate.query(SqlQueries.SQL_GET_ALL_USERS, userMapper);
     }
 }
