@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Primary
 @Service
@@ -29,4 +30,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUsers();
     }
 
+    @Override
+    public Optional<User> addUser(String username, String email, String password) {
+        return userRepository.addUser(username, email, password);
+    }
 }
