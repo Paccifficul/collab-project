@@ -27,12 +27,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addProduct(String name, String description, double price, int count) {
-        productRepository.addProduct(name, description, price, count);
+    public Optional<Product> addProduct(String name, String description, String article, double price, int count) {
+        return productRepository.addProduct(name, description, article, price, count);
     }
 
     @Override
-    public Product updateProduct(int id, String newName, String newDesc, double newPrice, int newCount) {
-        return productRepository.updateProduct(id, newName, newDesc, newPrice, newCount);
+    public Optional<Product> updateProduct(int id, String newName, String newDesc, String newArticle, double newPrice, int newCount) {
+        return productRepository.updateProduct(id, newName, newDesc, newArticle, newPrice, newCount);
+    }
+
+    @Override
+    public String deleteProduct(int id) {
+        return productRepository.deleteProductById(id);
     }
 }

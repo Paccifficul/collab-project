@@ -2,11 +2,17 @@ package collab.collabproject.repositories;
 
 import collab.collabproject.mappers.ProductMapper;
 import collab.collabproject.models.Product;
+import collab.collabproject.models.User;
 import collab.collabproject.repositories.interfaces.ProductRepository;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -21,7 +27,13 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Optional<Product> getProductById(int id) {
-        return Optional.empty();
+        var params = new MapSqlParameterSource();
+
+        params.addValue("id", id);
+
+        return jdbcTemplate.query(SqlQueries.SQL_GET_PRODUCT_BY_ID, params, productMapper)
+                .stream()
+                .findFirst();
     }
 
     @Override
@@ -30,12 +42,74 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void addProduct(String name, String description, double price, int count) {
+    public Optional<Product> addProduct(String name, String description, String article, double price, int count) {
+        var params = new MapSqlParameterSource();
+        params.addValue("name", name);
+        params.addValue("description", description);
+        params.addValue("article", article);
+        params.addValue("price", price);
+        params.addValue("count", count);
 
+        try {
+            var keyHolder = new GeneratedKeyHolder();
+
+            jdbcTemplate.update(SqlQueries.SQL_INSERT_PRODUCT_BY_ID, params, keyHolder);
+
+            int prodId = Objects.requireNonNull(keyHolder.getKey()).intValue();
+
+            return Optional.of(new Product(
+                    prodId,
+                    name,
+                    description,
+                    article,
+                    price,
+                    count
+            ));
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+
+            return Optional.empty();
+        }
     }
 
     @Override
-    public Product updateProduct(int id, String newName, String newDesc, double newPrice, int newCount) {
-        return null;
+    public Optional<Product> updateProduct(int id, String newName, String newDesc, String newArticle, double newPrice, int newCount) {
+        var params = new MapSqlParameterSource();
+        params.addValue("id", id);
+        params.addValue("name", newName);
+        params.addValue("description", newDesc);
+        params.addValue("article", newArticle);
+        params.addValue("price", newPrice);
+        params.addValue("count", newCount);
+
+        try {
+            jdbcTemplate.update(SqlQueries.SQL_UPDATE_PRODUCT_BY_ID, params);
+
+            return Optional.of(new Product(
+                    id,
+                    newName,
+                    newDesc,
+                    newArticle,
+                    newPrice,
+                    newCount
+            ));
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public String deleteProductById(int id) {
+        var params = new MapSqlParameterSource();
+        params.addValue("id", id);
+        if (getProductById(id).isEmpty()) {
+            return "Продукт " + id + " отсутствует, удаление прервано.";
+        }
+
+        jdbcTemplate.update(SqlQueries.SQL_DELETE_PRODUCT_BY_ID, params);
+
+        return "Продукт " + id + " удален успешно";
     }
 }

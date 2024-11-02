@@ -15,6 +15,7 @@ public class ProductMapper implements RowMapper<Product> {
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getString("description"),
+                resultSet.getString("article"),
                 resultSet.getDouble("price"),
                 resultSet.getInt("count")
         );
