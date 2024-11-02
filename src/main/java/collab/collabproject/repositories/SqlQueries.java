@@ -12,4 +12,12 @@ public class SqlQueries {
             "UPDATE users SET username= :username, email = :email, password = :password WHERE id = :id";
     public static final String SQL_INSERT_USER_BY_ID =
             "INSERT INTO users (username, email, password) VALUES (:username, :email, :password) RETURNING id";
+
+    // Product
+    public static final String SQL_GET_PRODUCT_BY_ID =
+            "SELECT * FROM products WHERE id = :id";
+    public static final String SQL_GET_ALL_PRODUCTS =
+            "SELECT * FROM products";
+    public static final String SQL_INSERT_PRODUCT_BY_ID =
+            "INSERT INTO products (name, description, price, count) VALUES (:name, :description, :price, :count) RETURNING id";
 }
