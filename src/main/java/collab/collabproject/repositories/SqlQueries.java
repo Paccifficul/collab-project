@@ -21,7 +21,7 @@ public class SqlQueries {
     public static final String SQL_INSERT_PRODUCT_BY_ID =
             "INSERT INTO products (name, description, article, price, count) VALUES (:name, :description, :article, :price, :count) RETURNING id";
     public static final String SQL_UPDATE_PRODUCT_BY_ID =
-            "UPDATE products SET name = :name, description = :description, article = :article, price = :price, count = :count WHERE id = :id";
+            "UPDATE products SET name = :name, description = :description, article = :article, price = :price WHERE id = :id";
     public static final String SQL_DELETE_PRODUCT_BY_ID =
             "DELETE FROM products WHERE id = :id";
 }

@@ -5,6 +5,9 @@ import collab.collabproject.models.Product;
 import collab.collabproject.models.User;
 import collab.collabproject.repositories.interfaces.ProductRepository;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -66,50 +69,39 @@ public class ProductRepositoryImpl implements ProductRepository {
                     count
             ));
         } catch (DataAccessException ex) {
-            System.err.println(ex.getMessage());
-
             return Optional.empty();
         }
     }
 
     @Override
-    public Optional<Product> updateProduct(int id, String newName, String newDesc, String newArticle, double newPrice, int newCount) {
+    public Optional<Product> updateProduct(int id, String newName, String newDesc, String newArticle, double newPrice) {
         var params = new MapSqlParameterSource();
         params.addValue("id", id);
         params.addValue("name", newName);
         params.addValue("description", newDesc);
         params.addValue("article", newArticle);
         params.addValue("price", newPrice);
-        params.addValue("count", newCount);
 
         try {
             jdbcTemplate.update(SqlQueries.SQL_UPDATE_PRODUCT_BY_ID, params);
 
-            return Optional.of(new Product(
-                    id,
-                    newName,
-                    newDesc,
-                    newArticle,
-                    newPrice,
-                    newCount
-            ));
+            return getProductById(id);
         } catch (DataAccessException ex) {
-            System.err.println(ex.getMessage());
-
             return Optional.empty();
         }
     }
 
     @Override
-    public String deleteProductById(int id) {
+    public ResponseEntity<?> deleteProductById(int id) {
         var params = new MapSqlParameterSource();
         params.addValue("id", id);
+
         if (getProductById(id).isEmpty()) {
-            return "Продукт " + id + " отсутствует, удаление прервано.";
+            return new ResponseEntity<>("Продукт " + id + " отсутствует, удаление прервано.", HttpStatus.OK);
         }
 
         jdbcTemplate.update(SqlQueries.SQL_DELETE_PRODUCT_BY_ID, params);
 
-        return "Продукт " + id + " удален успешно";
+        return new ResponseEntity<>("Продукт " + id + " удален успешно", HttpStatus.OK);
     }
 }

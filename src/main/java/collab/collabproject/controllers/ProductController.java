@@ -2,6 +2,7 @@ package collab.collabproject.controllers;
 
 import collab.collabproject.models.Product;
 import collab.collabproject.services.interfaces.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,13 +47,12 @@ public class ProductController {
                 newProduct.name(),
                 newProduct.description(),
                 newProduct.article(),
-                newProduct.price(),
-                newProduct.count()
+                newProduct.price()
         );
     }
 
     @DeleteMapping("/delete/{id:\\d+}")
-    public String deleteProduct(@PathVariable int id) {
+    public ResponseEntity<?> deleteProduct(@PathVariable int id) {
         return productService.deleteProduct(id);
     }
 }

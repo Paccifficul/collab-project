@@ -3,6 +3,7 @@ package collab.collabproject.services;
 import collab.collabproject.models.Product;
 import collab.collabproject.repositories.interfaces.ProductRepository;
 import collab.collabproject.services.interfaces.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,12 +33,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> updateProduct(int id, String newName, String newDesc, String newArticle, double newPrice, int newCount) {
-        return productRepository.updateProduct(id, newName, newDesc, newArticle, newPrice, newCount);
+    public Optional<Product> updateProduct(int id, String newName, String newDesc, String newArticle, double newPrice) {
+        return productRepository.updateProduct(id, newName, newDesc, newArticle, newPrice);
     }
 
     @Override
-    public String deleteProduct(int id) {
+    public ResponseEntity<?> deleteProduct(int id) {
         return productRepository.deleteProductById(id);
     }
 }
