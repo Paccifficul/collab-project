@@ -9,4 +9,6 @@ public interface UserRepository {
     Optional<User> getUserById(int id);
 
     List<User> getUsers();
+
+    Optional<User> addUser(String username, String email, String password);
 }

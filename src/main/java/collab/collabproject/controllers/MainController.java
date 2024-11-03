@@ -1,11 +1,11 @@
 package collab.collabproject.controllers;
 
 import collab.collabproject.models.User;
+import collab.collabproject.requests.UserRequest;
 import collab.collabproject.services.interfaces.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +27,15 @@ public class MainController {
     @GetMapping("/all")
     public List<User> getAllUsers() {
         return userService.getUsers();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addUser(@Valid @RequestBody UserRequest request) {
+        userService.addUser(
+                request.username(),
+                request.email(),
+                request.password()
+        );
     }
 }
