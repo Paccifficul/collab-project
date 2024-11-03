@@ -75,7 +75,7 @@ public class UserRepositoryImpl implements UserRepository {
             jdbcTemplate.update(SqlQueries.SQL_UPDATE_USER_BY_ID, params);
             return getUserById(id);
         } catch (DataAccessException ex) {
-            return Optional.empty();
+            throw new RuntimeException(ex);
         }
     }
 
