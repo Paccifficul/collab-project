@@ -1,6 +1,6 @@
 package collab.collabproject.service;
 
-import collab.collabproject.models.Product;
+import collab.collabproject.model.Product;
 import collab.collabproject.repository.interfaces.ProductRepository;
 import collab.collabproject.service.interfaces.ProductService;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package collab.collabproject.repository.interfaces;
 
-import collab.collabproject.models.User;
+import collab.collabproject.model.User;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package collab.collabproject.service;
 
-import collab.collabproject.models.Product;
-import collab.collabproject.models.User;
+import collab.collabproject.model.User;
 import collab.collabproject.repository.interfaces.UserRepository;
 import collab.collabproject.service.interfaces.UserService;
 import org.springframework.context.annotation.Primary;

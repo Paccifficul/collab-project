@@ -1,7 +1,7 @@
 package collab.collabproject.repository;
 
 import collab.collabproject.mapper.ProductMapper;
-import collab.collabproject.models.Product;
+import collab.collabproject.model.Product;
 import collab.collabproject.repository.interfaces.ProductRepository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;

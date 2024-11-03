@@ -1,7 +1,7 @@
 package collab.collabproject.repository;
 
 import collab.collabproject.mapper.UserMapper;
-import collab.collabproject.models.User;
+import collab.collabproject.model.User;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package collab.collabproject.mapper;
 
-import collab.collabproject.models.Product;
+import collab.collabproject.model.Product;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package collab.collabproject.controller;
 
-import collab.collabproject.models.Product;
+import collab.collabproject.model.Product;
 import collab.collabproject.service.interfaces.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

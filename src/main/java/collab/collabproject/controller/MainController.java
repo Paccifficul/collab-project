@@ -1,6 +1,6 @@
 package collab.collabproject.controller;
 
-import collab.collabproject.models.User;
+import collab.collabproject.model.User;
 import collab.collabproject.request.UserRequest;
 import collab.collabproject.service.interfaces.UserService;
 import jakarta.validation.Valid;
