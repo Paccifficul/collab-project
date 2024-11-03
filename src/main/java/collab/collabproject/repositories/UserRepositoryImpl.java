@@ -1,6 +1,7 @@
 package collab.collabproject.repositories;
 
 import collab.collabproject.mappers.UserMapper;
+import collab.collabproject.models.Product;
 import collab.collabproject.models.User;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.Objects;
 import java.util.Optional;
 import collab.collabproject.repositories.interfaces.UserRepository;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -59,5 +62,33 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (DataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public Optional<User> updateUser(int id, String username, String email) {
+        var params = new MapSqlParameterSource();
+        params.addValue("id", id);
+        params.addValue("username", username);
+        params.addValue("email", email);
+
+        try {
+            jdbcTemplate.update(SqlQueries.SQL_UPDATE_USER_BY_ID, params);
+            return getUserById(id);
+        } catch (DataAccessException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> deleteUserById(int id) {
+        var params = new MapSqlParameterSource();
+        params.addValue("id", id);
+
+        if (getUserById(id).isEmpty()) {
+            return new ResponseEntity<>("Пользователь " + id + " отсутствует, удаление прервано.", HttpStatus.OK);
+        }
+
+        jdbcTemplate.update(SqlQueries.SQL_DELETE_USER_BY_ID, params);
+        return new ResponseEntity<>("Продукт " + id + " удален успешно", HttpStatus.OK);
     }
 }

@@ -1,9 +1,11 @@
 package collab.collabproject.services;
 
+import collab.collabproject.models.Product;
 import collab.collabproject.models.User;
 import collab.collabproject.repositories.interfaces.UserRepository;
 import collab.collabproject.services.interfaces.UserService;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +35,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> addUser(String username, String email, String password) {
         return userRepository.addUser(username, email, password);
+    }
+
+    @Override
+    public Optional<User> updateUser(int id, String username, String email) {
+        return userRepository.updateUser(id, username, email);
+    }
+
+    @Override
+    public ResponseEntity<?> deleteUser(int id) {
+        return userRepository.deleteUserById(id);
     }
 }
