@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/profiles")
-public class MainController {
+public class UserController {
 
     private final UserService userService;
 
-    public MainController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
