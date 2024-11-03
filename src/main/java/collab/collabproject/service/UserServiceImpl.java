@@ -1,9 +1,9 @@
-package collab.collabproject.services;
+package collab.collabproject.service;
 
 import collab.collabproject.models.Product;
 import collab.collabproject.models.User;
-import collab.collabproject.repositories.interfaces.UserRepository;
-import collab.collabproject.services.interfaces.UserService;
+import collab.collabproject.repository.interfaces.UserRepository;
+import collab.collabproject.service.interfaces.UserService;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

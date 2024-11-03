@@ -1,4 +1,4 @@
-package collab.collabproject.requests;
+package collab.collabproject.request;
 
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;

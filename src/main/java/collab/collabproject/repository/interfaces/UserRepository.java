@@ -1,4 +1,4 @@
-package collab.collabproject.repositories.interfaces;
+package collab.collabproject.repository.interfaces;
 
 import collab.collabproject.models.User;
 import org.springframework.http.ResponseEntity;
