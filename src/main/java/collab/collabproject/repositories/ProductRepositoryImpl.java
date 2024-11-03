@@ -2,16 +2,13 @@ package collab.collabproject.repositories;
 
 import collab.collabproject.mappers.ProductMapper;
 import collab.collabproject.models.Product;
-import collab.collabproject.models.User;
 import collab.collabproject.repositories.interfaces.ProductRepository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

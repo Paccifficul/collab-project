@@ -57,7 +57,6 @@ public class UserRepositoryImpl implements UserRepository {
             int userId = Objects.requireNonNull(keyHolder.getKey()).intValue();
             return Optional.of(new User(userId, username, email, password));
         } catch (DataAccessException e) {
-            System.err.println(e.getMessage());
             return Optional.empty();
         }
     }
