@@ -1,4 +1,4 @@
-package collab.collabproject.mappers;
+package collab.collabproject.mapper;
 
 import collab.collabproject.models.Product;
 import org.springframework.jdbc.core.RowMapper;

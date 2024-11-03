@@ -1,8 +1,8 @@
-package collab.collabproject.services;
+package collab.collabproject.service;
 
 import collab.collabproject.models.Product;
-import collab.collabproject.repositories.interfaces.ProductRepository;
-import collab.collabproject.services.interfaces.ProductService;
+import collab.collabproject.repository.interfaces.ProductRepository;
+import collab.collabproject.service.interfaces.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

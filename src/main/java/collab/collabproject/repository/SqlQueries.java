@@ -1,4 +1,4 @@
-package collab.collabproject.repositories;
+package collab.collabproject.repository;
 
 public class SqlQueries {
     // User

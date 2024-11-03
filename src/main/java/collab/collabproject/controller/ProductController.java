@@ -1,9 +1,8 @@
-package collab.collabproject.controllers;
+package collab.collabproject.controller;
 
 import collab.collabproject.models.Product;
-import collab.collabproject.services.interfaces.ProductService;
+import collab.collabproject.service.interfaces.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

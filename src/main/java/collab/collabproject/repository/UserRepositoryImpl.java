@@ -1,13 +1,12 @@
-package collab.collabproject.repositories;
+package collab.collabproject.repository;
 
-import collab.collabproject.mappers.UserMapper;
-import collab.collabproject.models.Product;
+import collab.collabproject.mapper.UserMapper;
 import collab.collabproject.models.User;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import collab.collabproject.repositories.interfaces.UserRepository;
+import collab.collabproject.repository.interfaces.UserRepository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
