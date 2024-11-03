@@ -55,9 +55,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         try {
             var keyHolder = new GeneratedKeyHolder();
-
             jdbcTemplate.update(SqlQueries.SQL_INSERT_PRODUCT_BY_ID, params, keyHolder);
-
             int prodId = Objects.requireNonNull(keyHolder.getKey()).intValue();
 
             return Optional.of(new Product(
