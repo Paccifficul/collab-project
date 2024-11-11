@@ -22,9 +22,9 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{id:\\d+}")
-    public Optional<Product> getProductById(@PathVariable int id) {
-        return productService.getProductById(id);
+    @GetMapping("/{productId:\\d+}")
+    public Optional<Product> getProductById(@PathVariable int productId) {
+        return productService.getProductById(productId);
     }
 
 
@@ -39,7 +39,7 @@ public class ProductController {
         );
     }
 
-    @PutMapping("/update/{id:\\d+}")
+    @PutMapping("/{id:\\d+}")
     public Optional<Product> updateProduct(@RequestBody Product newProduct, @PathVariable int id) {
         return productService.updateProduct(
                 id,
@@ -50,7 +50,7 @@ public class ProductController {
         );
     }
 
-    @DeleteMapping("/delete/{id:\\d+}")
+    @DeleteMapping("/{id:\\d+}")
     public ResponseEntity<?> deleteProduct(@PathVariable int id) {
         return productService.deleteProduct(id);
     }
